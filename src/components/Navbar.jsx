@@ -10,7 +10,7 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Home', href: '/' },
-        { name: 'Destinations', href: '/destinations' },
+        { name: 'Add-Destination', href: '/add-destination' },
         { name: 'My Bookings', href: '/bookings' },
         { name: 'Admin', href: '/admin' },
     ];
