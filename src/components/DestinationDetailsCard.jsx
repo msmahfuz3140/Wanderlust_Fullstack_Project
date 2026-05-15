@@ -14,8 +14,11 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
+import { EditModalForm } from "@/components/EditModalForm";
 
 export default function DestinationDetailsClient({ destination, id }) {
+    const [isEditOpen, setIsEditOpen] = useState(false);
 
     const router = useRouter();
     const [imgError, setImgError] = useState(false);
@@ -46,23 +49,28 @@ export default function DestinationDetailsClient({ destination, id }) {
             {/* ================= NAV ACTIONS ================= */}
             <div className="max-w-7xl mx-auto px-4 pt-8 flex flex-wrap gap-4 justify-between items-center">
 
-                <button
-                    onClick={() => router.push("/destinations")}
-                    className="flex items-center gap-2 text-gray-600 hover:text-black transition font-medium"
-                >
-                    <ArrowLeft size={18} />
-                    Back to Destinations
-                </button>
+                <Link href="/destination">
+                    <button
+                        onClick={() => router.push(`/destination`)}
+                        className="flex items-center gap-2 px-4 py-2 rounded-xl border hover:bg-gray-100 transition"
+                    >
+                        <ArrowLeft size={16} />
+                        Back to Destination
+                    </button>
+                </Link>
 
                 <div className="flex gap-3">
+
+                    {/* EDIT BUTTON */}
                     <button
-                        onClick={() => router.push(`/destinations/edit/${id}`)}
+                        onClick={() => setIsEditOpen(true)}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl border hover:bg-gray-100 transition"
                     >
                         <Pencil size={16} />
                         Edit
                     </button>
 
+                    {/* DELETE BUTTON */}
                     <button
                         onClick={handleDelete}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition"
@@ -70,6 +78,7 @@ export default function DestinationDetailsClient({ destination, id }) {
                         <Trash2 size={16} />
                         Delete
                     </button>
+
                 </div>
             </div>
 
@@ -203,6 +212,12 @@ export default function DestinationDetailsClient({ destination, id }) {
                     </div>
                 </div>
             </div>
+            <EditModalForm
+                isOpen={isEditOpen}
+                onOpenChange={setIsEditOpen}
+                destination={destination}
+                id={id}
+            />
         </div>
     );
 }
