@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { CalendarDays, MapPin, Clock, ImageOff, Heart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function DestinationCard({ destination }) {
     const {
@@ -15,6 +16,7 @@ export default function DestinationCard({ destination }) {
         price,
         imageUrl,
         description,
+        _id
     } = destination;
 
     const [imgError, setImgError] = useState(false);
@@ -47,7 +49,7 @@ export default function DestinationCard({ destination }) {
                 )}
 
                 {/* Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent"></div>
 
                 {/* Category */}
                 <span className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 text-xs font-semibold rounded-full shadow">
@@ -66,7 +68,7 @@ export default function DestinationCard({ destination }) {
                 </button>
 
                 {/* Price */}
-                <div className="absolute bottom-4 right-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg">
+                <div className="absolute bottom-4 right-4 bg-linear-to-r from-cyan-500 to-blue-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg">
                     ${price}
                 </div>
             </div>
@@ -105,9 +107,11 @@ export default function DestinationCard({ destination }) {
                 </p>
 
                 {/* BUTTON */}
-                <button className="w-full mt-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 rounded-lg font-medium hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-md">
-                    View Details
-                </button>
+                <Link href={`destination/${_id}`}>
+                    <button className="w-full mt-3 bg-linear-to-r from-cyan-500 to-blue-600 text-white py-2 rounded-lg font-medium hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-md">
+                        Book Now
+                    </button>
+                </Link>
             </div>
         </motion.div>
     );
