@@ -10,14 +10,15 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Home', href: '/' },
-        { name: 'Add-Destination', href: '/add-destination' },
+        { name: 'Destination', href: '/destination' },
         { name: 'My Bookings', href: '/bookings' },
         { name: 'Admin', href: '/admin' },
+        { name: 'Add-Destination', href: '/add-destination' }
     ];
 
     return (
         <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 w-full">
-            <div className="w-[95%] xl:w-[90%] max-w-400 mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-[97%] xl:w-[95%] max-w-430 mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20 relative">
 
                     <div className="flex items-center">
