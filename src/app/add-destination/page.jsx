@@ -30,12 +30,13 @@ const AddDestinationPage = () => {
             });
 
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
 
             if (!res.ok) throw new Error("Failed");
 
             // ✅ Success Toast
             toast.success("Destination added successfully ✈️");
+            window.location.href = "/destination";
 
             // ✅ Reset Form
             // e.currentTarget.reset();

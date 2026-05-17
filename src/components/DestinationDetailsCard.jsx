@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { EditModalForm } from "@/components/EditModalForm";
+import { DeleteAlert } from "./DeleteAlert";
 
 export default function DestinationDetailsClient({ destination, id }) {
     const [isEditOpen, setIsEditOpen] = useState(false);
@@ -71,13 +72,14 @@ export default function DestinationDetailsClient({ destination, id }) {
                     </button>
 
                     {/* DELETE BUTTON */}
-                    <button
+                    {/* <button
                         onClick={handleDelete}
                         className="flex items-center gap-2 px-4 py-2 rounded-xl border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition"
                     >
                         <Trash2 size={16} />
                         Delete
-                    </button>
+                    </button> */}
+                     <DeleteAlert destination={destination} id={id} />
 
                 </div>
             </div>
@@ -212,12 +214,15 @@ export default function DestinationDetailsClient({ destination, id }) {
                     </div>
                 </div>
             </div>
-            <EditModalForm
+            <div className="hidden">
+                <EditModalForm
                 isOpen={isEditOpen}
                 onOpenChange={setIsEditOpen}
                 destination={destination}
                 id={id}
             />
+            </div>
+           
         </div>
     );
 }

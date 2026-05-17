@@ -1,7 +1,7 @@
 "use client";
 
 import { Envelope } from "@gravity-ui/icons";
-import { Button, Select, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField } from "@heroui/react";
+import { Button, Select, FieldError, Input, Label, ListBox, Modal, Surface, TextArea, TextField, toast } from "@heroui/react";
 import { Pencil } from "lucide-react";
 
 export function EditModalForm({ isOpen,
@@ -16,41 +16,45 @@ export function EditModalForm({ isOpen,
         price,
         imageUrl,
         description,
-        category
+        category,
     } = destination;
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const destination = Object.fromEntries(formData.entries());
+        // console.log(destination);
 
-        // try {
-        //     const res = await fetch("http://localhost:5000/destination", {
-        //         method: "POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify(destination),
-        //     });
+        try {
+            const res = await fetch(`http://localhost:5000/destination/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(destination),
+            });
 
-        //     const data = await res.json();
-        //     console.log(data);
+            const data = await res.json();
+            console.log(data);
 
-        //     if (!res.ok) throw new Error("Failed");
+            if (!res.ok) throw new Error("Failed");
 
-        //     // ✅ Success Toast
-        //     toast.success("Destination Edit successfully ✈️");
+            // ✅ Success Toast
+            toast.success("Destination Edited successfully ✈️");
+            window.location.href = `/destination/${id}`;
 
-        //     // ✅ Reset Form
-        //     // e.currentTarget.reset();
+            // ✅ Reset Form
+            // e.currentTarget.reset();
 
-        // } catch (error) {
-        //     console.error(error);
+        } catch (error) {
+            console.error(error);
 
-        //     // ✅ Error Toast
-        //     toast.danger("Something went wrong ❌");
-        // }
+            // ✅ Error Toast
+            toast.danger("Something went wrong ❌");
+        }
+        
     };
+    
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <button

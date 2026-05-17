@@ -109,7 +109,7 @@ export default function DestinationCard({ destination }) {
                 {/* BUTTON */}
                 <Link href={`destination/${_id}`}>
                     <button className="w-full mt-3 bg-linear-to-r from-cyan-500 to-blue-600 text-white py-2 rounded-lg font-medium hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-md">
-                        Book Now
+                        See Details
                     </button>
                 </Link>
             </div>
